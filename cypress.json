@@ -1,3 +1,16 @@
 {
-  "baseUrl": "http://localhost:3000"
+  "baseUrl": "http://localhost:3000",
+  "integrationFolder": "cypress/tests",
+  "viewportHeight": 1000,
+  "viewportWidth": 1280,
+  "firefoxGcInterval": null,
+  "retries": {
+    "runMode": 2,
+    "openMode": 1
+  },
+  "video": false,
+  "env": {
+    "apiUrl": "http://localhost:3001",
+    "mobileViewportWidthBreakpoint": 414
+  }
 }

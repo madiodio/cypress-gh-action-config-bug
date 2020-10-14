@@ -4,6 +4,8 @@
   "exclude": [],
   "compilerOptions": {
     "types": ["cypress"],
-    "isolatedModules": false
+    "isolatedModules": false,
+    "lib": ["es2015", "dom"],
+    "baseUrl": "./"
   }
 }
