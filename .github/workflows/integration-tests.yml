@@ -15,7 +15,7 @@ jobs:
       - name: Run UI & API integrations
         uses: cypress-io/github-action@v2
         with:
-          config: baseUrl=http://localhost:5000
+          config-file: cypress/cypress-ci.json
           command: yarn cypress:run
           browser: chrome
           build: yarn build
