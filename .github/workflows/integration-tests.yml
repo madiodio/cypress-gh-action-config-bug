@@ -1,0 +1,49 @@
+name: Integration Tests with Cypress
+
+on:
+  push:
+    paths-ignore:
+      - "doc/**"
+
+jobs:
+  cypress-run-recette-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run UI & API integrations tests on recette
+        uses: cypress-io/github-action@v2
+        with:
+          config-file: cypress/ci-config.json
+          command: npm run test:cypress:start
+          browser: chrome
+          build: npm run build:recette
+          start: npm start
+          spec: cypress/tests/**/*
+          wait-on: "http://localhost:5000"
+        env:
+          CYPRESS_API_URL: https://bo.recette.keyops.tech/api
+          CYPRESS_API_URL_VERSION: 7
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+  cypress-run-production-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run UI & API integrations tests on prod
+        uses: cypress-io/github-action@v2
+        with:
+          config-file: cypress/ci-config.json
+          command: npm run test:cypress:start
+          browser: chrome
+          build: npm run build
+          start: npm start
+          spec: cypress/tests/**/*
+          wait-on: "http://localhost:5000"
+        env:
+          CYPRESS_API_URL: https://bo.keyops.tech/api
+          CYPRESS_API_URL_VERSION: 7
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
