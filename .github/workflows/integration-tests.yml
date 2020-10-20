@@ -1,9 +1,6 @@
 name: Integration Tests with Cypress
 
-on:
-  push:
-    paths-ignore:
-      - "doc/**"
+on: [push]
 
 jobs:
   cypress-local-tests:
